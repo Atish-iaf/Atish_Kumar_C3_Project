@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -69,4 +70,18 @@ class RestaurantTest {
         assertThrows(itemNotFoundException.class, () -> restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    // <<<<<<<<<<<<<<<<<<<<<CALCULATE ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>
+    //Failing test case added for calculateOrderValue method
+    @Test
+    @DisplayName("Calculate order value for items of a restaurant")
+    public void calculate_order_value_for_items() throws restaurantNotFoundException {
+    addRestaurantWithMenu("Amelie's cafe", "Chennai", LocalTime.parse("10:30:00"), LocalTime.parse("22:00:00"));
+
+    // Assuming "Sweet corn soup" and "Vegetable lasagne" are items in the menu
+    double orderValue = restaurant.calculateOrderValue("Sweet corn soup", "Vegetable lasagne");
+
+    assertEquals(388.0, orderValue);
+   }
+    // <<<<<<<<<<<<<<<<<<<<<CALCULATE ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
